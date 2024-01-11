@@ -1,8 +1,8 @@
+# Ruckus Unleashed
 class Unleashed < Oxidized::Model
   using Refinements
 
-  # for Ruckus Unleashed wireless access points
-  
+  # Prompt from fastiron  
   prompt /^([\w.@()-]+[#>]\s?)$/
   
   cmd :all do |cfg|
@@ -11,20 +11,22 @@ class Unleashed < Oxidized::Model
   end
 
   cmd :secret do |cfg|
+    # Key= value spacing is not consistent
+
     # Administrator Name/Password:
-    cfg.gsub! /(Password=).*/, '\1 <hidden>'
+    cfg.gsub! /(Password[ ]?=[ ]?).+/, '\1 <hidden>'
     # SSID Passphrase
-    cfg.gsub! /(Passphrase =).*/, '\1 <hidden>'
+    cfg.gsub! /(Passphrase[ ]?=[ ]?).+/, '\1 <hidden>'
     # SNMPv2
-    cfg.gsub! /(RO Community=).*/, '\1 <hidden>'
-    cfg.gsub! /(RW Community=).*/, '\1 <hidden>'
+    cfg.gsub! /(RO Community[ ]?=[ ]?).+/, '\1 <hidden>'
+    cfg.gsub! /(RW Community[ ]?=[ ]?).+/, '\1 <hidden>'
     # SNMPv3
-    cfg.gsub! /(Authentication Pass Phrase=).*/, '\1 <hidden>'
-    cfg.gsub! /(Privacy Phrase=).*/, '\1 <hidden>'
+    cfg.gsub! /(Authentication Pass Phrase[ ]?=[ ]?).+/, '\1 <hidden>'
+    cfg.gsub! /(Privacy Phrase[ ]?=[ ]?).+/, '\1 <hidden>'
     # Smart Redundancy
-    cfg.gsub! /(Shared Secret=).*/, '\1 <hidden>'
+    cfg.gsub! /(Shared Secret[ ]?=[ ]?).+/, '\1 <hidden>'
     # Unleashed Network
-    cfg.gsub! /(Token=).*/, '\1 <hidden>'
+    cfg.gsub! /(Token[ ]?=[ ]?).+/, '\1 <hidden>'
     cfg
   end
 
@@ -32,7 +34,7 @@ class Unleashed < Oxidized::Model
     # Truncate dynamic system data beyond 8 lines
     cfg = cfg.lines.take(8).join
     # Remove uptime
-    cfg.gsub! /(Uptime=).*/, '\1 <removed>'
+    cfg.gsub! /(Uptime[ ]?=[ ]?).+/, '\1 <removed>'
   end
 
   cmd 'show ethinfo'
