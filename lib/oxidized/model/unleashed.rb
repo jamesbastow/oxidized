@@ -2,9 +2,9 @@
 class Unleashed < Oxidized::Model
   using Refinements
 
-  # Prompt from fastiron  
+  # Prompt from fastiron
   prompt /^([\w.@()-]+[#>]\s?)$/
-  
+
   cmd :all do |cfg|
     # Remove extra lines, excessive CRLF sequences, add final LF
     cfg.cut_both.gsub /(\r\n)/, '' + "\n"
@@ -44,9 +44,8 @@ class Unleashed < Oxidized::Model
   cfg :ssh do
     username /(Please login:)/
     password /(Password:)/
-    
+
     post_login 'enable'
     pre_logout 'exit'
   end
 end
-
