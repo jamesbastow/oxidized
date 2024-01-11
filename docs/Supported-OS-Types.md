@@ -222,6 +222,8 @@
   * [AlteonOS](/lib/oxidized/model/alteonos.rb)
 * Raisecom
   * [Raisecom](/lib/oxidized/model/raisecom.rb)
+* Ruckus
+  * [Unleashed](/lib/oxidized/model/unleashed.rb)
 * Ruijie Networks
   * [RGOS](/lib/oxidized/model/rgos.rb)
 * QTECH
